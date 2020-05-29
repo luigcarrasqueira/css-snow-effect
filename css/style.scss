@@ -1,0 +1,96 @@
+body {
+    margin: 0;
+}
+
+.wrapper {
+    width: 100vw;
+    height: 100vh;
+    background: radial-gradient(farthest-corner at 30vw 20vh,#7397A1,#3F2C41 100%);
+}
+
+.navbar {
+    position: absolute;
+    width: 100%;
+    height: 60px;
+    top: 0;
+    left: 0;
+    opacity: .9;
+    font-size: 26px;
+    text-align: center;
+    color: #fff;
+    background: #646464;
+    font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+    z-index: 1;
+}
+.navbar span {
+    position: relative;
+    top: 15px;
+}
+
+$s1: "";
+$s2: "";
+$s3: "";
+
+@for $i from 1 through 400 {
+    $s1: $s1 + random(1000)*.1vw + " " + random(1000)*.1vh + " " + 0 + " " + random(50)*-.01rem + #fff;
+    $s2: $s2 + random(1000)*.1vw + " " + random(1000)*.1vh + " " + 0 + " " + random(50)*-.01rem + #fff;
+    $s3: $s3 + random(1000)*.1vw + " " + random(1000)*.1vh + " " + 0 + " " + random(50)*-.01rem + #fff;
+
+    @if $i < 400 {
+        $s1: $s1 + ",";
+        $s2: $s2 + ",";
+        $s3: $s3 + ",";
+    }
+}
+
+.snow {
+    border-radius: 50%;
+    opacity: .8;
+    position: absolute;
+    top: -100vh;
+    animation-name: fall;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+}
+
+.layer1 {
+    width: 1.5rem;
+    height: 1.5rem;
+    filter: blur(1.5px);
+    box-shadow: #{$s1};
+    animation-duration: 12s;
+}
+
+.layer1.duplicate {
+    animation-delay: -6s;
+}
+
+.layer2 {
+    width: 1.2rem;
+    height: 1.2rem;
+    filter: blur(3px);
+    box-shadow: #{$s2};
+    animation-duration: 16s;
+}
+
+.layer2.duplicate {
+    animation-delay: -8s;
+}
+
+.layer3 {
+    width: .8rem;
+    height: .8rem;
+    filter: blur(6px);
+    box-shadow: #{$s3};
+    animation-duration: 20s;
+}
+
+.layer3.duplicate {
+    animation-delay: -10s;
+}
+
+@keyframes fall {
+    100% {
+        transform: translateY(200vh);
+    }
+}
